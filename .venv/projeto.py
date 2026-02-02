@@ -117,8 +117,9 @@ any_duplicates = df_amazon.duplicated(subset=['product_id', 'product_name', 'cat
        'review_content', 'img_link', 'product_link']).any()
 print(f'Olhando se tem duplicadas em booleano : {any_duplicates}')
 
-# Dropando colunas que não fazem sentido para analise no caso,  'img_link' que são imagens de produtos e  'product_link' que é o link do URL do produto .
-colunas_drop = ['img_link', 'product_link']
+# Dropando colunas que não fazem sentido para analise no caso,  'img_link' que são imagens de produtos e 'product_link' que é o link do URL do produto .
+# E Também o 'about_product' que é uma descrição do produto, que não faz sentido manter na análise.
+colunas_drop = ['img_link', 'product_link', 'about_product']
 df_amazon = df_amazon.drop(columns=colunas_drop)
 df_amazon.info()
 
@@ -259,7 +260,6 @@ review_id = LabelEncoder()
 review_content = LabelEncoder()
 product_name = LabelEncoder()
 user_name = LabelEncoder()
-about_product = LabelEncoder()
 user_id = LabelEncoder()
 review_title = LabelEncoder()
 final_price = LabelEncoder()
@@ -271,7 +271,6 @@ df_amazon['review_id'] = review_id.fit_transform(df_amazon['review_id'])
 df_amazon['review_content'] = review_content.fit_transform(df_amazon['review_content'])
 df_amazon['product_name'] = product_name.fit_transform(df_amazon['product_name'])
 df_amazon['user_name'] = user_name.fit_transform(df_amazon['user_name'])
-df_amazon['about_product'] = about_product.fit_transform(df_amazon['about_product'])
 df_amazon['user_id'] = user_id.fit_transform(df_amazon['user_id'])
 df_amazon['review_title'] = review_title.fit_transform(df_amazon['review_title'])
 df_amazon['final_price'] = final_price.fit_transform(df_amazon['final_price'])
@@ -329,11 +328,9 @@ df_amazon['review_id'] = review_id.inverse_transform(df_amazon['review_id'])
 df_amazon['review_content'] = review_content.inverse_transform(df_amazon['review_content'])
 df_amazon['product_name'] = product_name.inverse_transform(df_amazon['product_name'])
 df_amazon['user_name'] = user_name.inverse_transform(df_amazon['user_name'])
-df_amazon['about_product'] = about_product.inverse_transform(df_amazon['about_product'])
 df_amazon['user_id'] = user_id.inverse_transform(df_amazon['user_id'])
 df_amazon['review_title'] = review_title.inverse_transform(df_amazon['review_title'])
 df_amazon['final_price'] = final_price.inverse_transform(df_amazon['final_price'])
-
 
 df_amazon.info()
 
