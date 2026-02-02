@@ -122,7 +122,33 @@ colunas_drop = ['img_link', 'product_link']
 df_amazon = df_amazon.drop(columns=colunas_drop)
 df_amazon.info()
 
-# concluida a limpeza do conjunto de dados, removendo os valores nulos, ausentes e duplicados.
+# Verificando a coluna 'category'
+print(df_amazon['category'].value_counts())
+
+# Verificando a contagem de valores únicos na coluna 'category'
+pd.set_option('display.max_rows', None)
+print(df_amazon['category'].value_counts())
+pd.reset_option('display.max_rows')
+
+# Simplificando os nomes das categorias.
+def simplify_category(category_string):
+    partes = category_string.split('|')
+    simplificado = partes[-1]
+    simplificado = simplificado.replace('&', '-')
+    return simplificado
+
+# Aplicando a função de simplificação na coluna 'category'
+df_amazon['category'] = df_amazon['category'].apply(simplify_category)
+
+# Verificando as categorias após a simplificação.
+print("Top 10 Categorias Mais Frequentes Após Simplificação:")
+print(df_amazon['category'].value_counts().head(10))
+
+# Verificando novamente duplicatas após limpeza.
+
+df_amazon.duplicated().sum()
+
+# concluida a limpeza do conjunto de dados, removendo os valores nulos, ausentes, duplicados e simplificando os dados.
 
 # Desconbrindo se há outliers nas variavéis quantitativas.
 plt.figure(figsize=(15, 10))
@@ -334,6 +360,16 @@ Existem correlações ou associações relevantes entre as variáveis?
 Existe uma correlação positiva muito forte entre o preço com desconto (discounted_price) e o preço real (actual_price), 
 (coeficiente de Pearson em torno de 0.96 e Spearman em torno de 0.93). Isso é natural, pois o preço com desconto é diretamente derivado do preço real.
 """
+
+# Extras, o que podemos fazer mais com esse dataset?
+
+# Análise de das 5 melhores categorias mais avaliadas.
+print("Top 5 categories with highest average ratings:")
+top_5_categories = df_amazon.groupby('category')['rating'].mean().reset_index()
+
+top_5_categories = top_5_categories.sort_values(by='rating', ascending=False)
+
+print(top_5_categories.head(5))
 
 # Exportando dataset tratado, para ser usado no power bi.
 df_amazon.to_csv('amazon_tratado.csv', index=False)
