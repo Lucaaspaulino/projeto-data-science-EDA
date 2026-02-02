@@ -2,7 +2,7 @@ Análise Exploratória de Dados (EDA) de Produtos E-commerce da Amazon
 Este projeto realiza uma Análise Exploratória de Dados (EDA) em um dataset de produtos da Amazon, com o objetivo de entender a distribuição de preços, avaliações, categorias e outras características dos produtos.
 
 📊 Fonte dos Dados
-O dataset utilizado foi carregado a partir de um arquivo CSV disponível publicamente no GitHub: https://raw.githubusercontent.com/dastias/Arquivos-Banco-de-Dados/refs/heads/main/amazon.csv
+O dataset utilizado foi carregado a partir de um arquivo CSV disponível publicamente no GitHub: https://raw.githubusercontent.com/Lucaaspaulino/Dataset-Amazon/refs/heads/main/amazon.csv
 
 ✨ Passos Realizados na Análise
 Carregamento e Visão Geral dos Dados
