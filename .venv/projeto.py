@@ -364,7 +364,7 @@ Existe uma correlação positiva muito forte entre o preço com desconto (discou
 # Extras, o que podemos fazer mais com esse dataset?
 
 # Análise de das 5 melhores categorias mais avaliadas.
-print("Top 5 categories with highest average ratings:")
+print("Top 5 categorias mais avaliadas:")
 top_5_categories = df_amazon.groupby('category')['rating'].mean().reset_index()
 
 top_5_categories = top_5_categories.sort_values(by='rating', ascending=False)
