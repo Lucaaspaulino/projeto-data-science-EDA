@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
 
-df_amazon = pd.read_csv('https://raw.githubusercontent.com/dastias/Arquivos-Banco-de-Dados/refs/heads/main/amazon.csv')
+df_amazon = pd.read_csv('https://raw.githubusercontent.com/Lucaaspaulino/Dataset-Amazon/refs/heads/main/amazon.csv')
 print(df_amazon)
 
 # Cabeçalho
